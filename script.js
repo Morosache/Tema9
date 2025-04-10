@@ -1,15 +1,33 @@
 let canvasHeight = 0;
 let canvasWidth = 0;
 
+const colorfulBoxesCols1 = 2;
+const colorfulBoxesCols2 = 3;
+const colorfulBoxesRows1 = 3;
+const colorfulBoxesRows2 = 2;
+const colorfulBoxes = [];
+const matrix1 = [];
+const matrix2 = [];
+
+
 
 function setup() {
     canvasHeight = windowHeight;
     canvasWidth = windowWidth;
     createCanvas(canvasWidth, canvasHeight);
+
+    
+    initBoxes(75,25, colorfulBoxesCols1, colorfulBoxesRows1, matrix1)
+    initBoxes(350, 50, colorfulBoxesCols2, colorfulBoxesRows2, matrix2)
+
+    colorfulBoxes.push(matrix1);
+    colorfulBoxes.push(matrix2);
+
 }
 
 function draw() {
     background("gray");
+    drawColorfulBoxes();
     drawEqual();
     drawX();
 }
@@ -54,6 +72,16 @@ function drawBox(obj) {
 }
 
 
+function drawColorfulBoxes() {
+    for (let matrix of colorfulBoxes) { 
+      for (let row of matrix) {       
+        for (let box of row) {         
+          drawBox(box);
+        }
+      }
+    }
+  }
+
 function drawEqual() {
     fill("black");
 
@@ -77,15 +105,15 @@ function drawEqual() {
     fill("black");
     
     beginShape(QUADS);
-    vertex(220, 90);
-    vertex(240, 90);
-    vertex(280, 125);
-    vertex(260, 125);
+    vertex(220, 80);
+    vertex(240, 80);
+    vertex(280, 115);
+    vertex(260, 115);
 
-    vertex(280,90);
-    vertex(260, 90);
-    vertex(220, 125);
-    vertex(240, 125)
+    vertex(280,80);
+    vertex(260, 80);
+    vertex(220, 115);
+    vertex(240, 115)
 
     endShape();
 
