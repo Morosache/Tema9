@@ -1,10 +1,11 @@
 let canvasHeight = 0;
 let canvasWidth = 0;
+let multiMatrix = [];
 
-const colorfulBoxesCols1 = 2;
-const colorfulBoxesCols2 = 3;
-const colorfulBoxesRows1 = 3;
-const colorfulBoxesRows2 = 2;
+const colorfulBoxesCols1 = 3;
+const colorfulBoxesCols2 = 2;
+const colorfulBoxesRows1 = 2;
+const colorfulBoxesRows2 = 3;
 const colorfulBoxes = [];
 const matrix1 = [];
 const matrix2 = [];
@@ -17,11 +18,13 @@ function setup() {
     createCanvas(canvasWidth, canvasHeight);
 
     
-    initBoxes(75,25, colorfulBoxesCols1, colorfulBoxesRows1, matrix1)
-    initBoxes(350, 50, colorfulBoxesCols2, colorfulBoxesRows2, matrix2)
+    initBoxes(25,50, colorfulBoxesCols1, colorfulBoxesRows1, matrix1)
+    initBoxes(350, 25, colorfulBoxesCols2, colorfulBoxesRows2, matrix2)
 
     colorfulBoxes.push(matrix1);
     colorfulBoxes.push(matrix2);
+
+    multiMatrix = calculateMultiplicationResult(matrix1, matrix2);
 
 }
 
@@ -30,6 +33,7 @@ function draw() {
     drawColorfulBoxes();
     drawEqual();
     drawX();
+    drawMultiplicationMatrix();
 }
 
 
@@ -81,6 +85,46 @@ function drawColorfulBoxes() {
       }
     }
   }
+
+
+  function calculateMultiplicationResult(matrix1, matrix2) {
+    const result = [];
+    for( let i = 0; i < 2; i++) {
+        const row = [];
+        for(let j = 0; j < 2; j++) {
+           let prod = 0;
+           for(let k = 0; k < 3; k++) {
+            prod += matrix1[i][k].num * matrix2[k][j].num;
+           }
+           const box = {
+               x: 675 + j * 50,
+               y: 50 + i * 50,
+               s: 40,
+               num: prod,
+               color: {
+               r: Math.floor(Math.random() * 255),
+               g: Math.floor(Math.random() * 255),
+               b: Math.floor(Math.random() * 255),
+               },
+           };
+            row.push(box);
+        }
+        result.push(row);
+    }
+    return result;
+  }
+
+  function drawMultiplicationMatrix() {
+    for (let row of multiMatrix) {
+      for (let box of row) {
+        drawBox(box);
+      }
+    }
+  }
+
+
+
+
 
 function drawEqual() {
     fill("black");
