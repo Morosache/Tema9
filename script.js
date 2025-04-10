@@ -10,6 +10,8 @@ function setup() {
 
 function draw() {
     background("gray");
+    drawEqual();
+    drawX();
 }
 
 
@@ -39,6 +41,16 @@ function initBoxes(width, height, cols, rows, matrix) {
         x = width;
         y += 50;
     }
+}
+
+function drawBox(obj) {
+  fill(obj.color.r, obj.color.g, obj.color.b);
+  square(obj.x, obj.y, obj.s);
+
+  fill(0);
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  text(obj.num, obj.x + obj.s / 2, obj.y + obj.s / 2);
 }
 
 
