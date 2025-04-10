@@ -42,3 +42,41 @@ function initBoxes(width, height, cols, rows, matrix) {
 }
 
 
+function drawEqual() {
+    fill("black");
+
+    beginShape(QUADS);
+    vertex(600, 110);
+    vertex(600, 125);
+    vertex(550, 125);
+    vertex(550, 110);
+
+    vertex(600, 80);
+    vertex(600, 95);
+    vertex(550, 95);
+    vertex(550, 80);
+
+    endShape();
+  }
+
+  
+  function drawX() {
+
+    fill("black");
+    
+    beginShape(QUADS);
+    vertex(220, 90);
+    vertex(240, 90);
+    vertex(280, 125);
+    vertex(260, 125);
+
+    vertex(280,90);
+    vertex(260, 90);
+    vertex(220, 125);
+    vertex(240, 125)
+
+    endShape();
+
+
+  }
+
